@@ -23,6 +23,24 @@ const readFile = (filename: string): string[] => {
     .split(/\r?\n/);
 }
 
+const assignMyMove = (move: string[]): string[] => {
+  if (move[1] == 'X') return assignWinMove(move);
+  else if (move[1] == 'Z') return assignLossMove(move);
+  return [move[0], move[0]];
+}
+
+const assignWinMove = (move: string[]): string[] => {
+  if (move[0] == 'A') return [move[0], 'C'];
+  else if (move[0] == 'B') return [move[0], 'A'];
+  return [move[0], 'B'];
+}
+
+const assignLossMove = (move: string[]): string[] => {
+  if (move[0] == 'A') return [move[0], 'B'];
+  else if (move[0] == 'B') return [move[0], 'C'];
+  return [move[0], 'A'];
+}
+
 const replaceWithValues = (letters: string[]): number[] => {
   return letters.map(letter => MoveItems[letter]);
 }
@@ -41,8 +59,18 @@ const checkWin = (elfMove: number, myMove: number): boolean => {
   }
 }
 
-const totalPoints = readFile(inputPath)
+const content = readFile(inputPath);
+
+const totalPointsPartOne = content
   .map(move => getMovePoints(replaceWithValues(move.split(' '))))
   .reduce((sum: number, num: number) => sum + num, 0);
 
-console.log(`\nTotal points: $${totalPoints}`);
+const totalPointsPartTwo = content
+  .map(move => getMovePoints(replaceWithValues(assignMyMove(move.split(' ')))))
+  .reduce((sum: number, num: number) => sum + num, 0);
+  
+console.log('Part 1:')
+console.log(`Total points: $${totalPointsPartOne}`);
+console.log('Part 2:')
+console.log(`Total points: $${totalPointsPartTwo}`);
+
