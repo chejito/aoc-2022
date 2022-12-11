@@ -1,6 +1,8 @@
 import { readFileLines } from "../helpers/ReadFile";
 
-const inputPath = '../data/day-3-input.txt'
+// const inputPath = '../data/day-3-test.txt' // To test methods
+const inputPath = '../data/day-3-input.txt' // To get solutions
+
 const values = ' abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
 const getRepeatedItems = (rucksack: string): string[] => {

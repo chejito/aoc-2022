@@ -1,7 +1,7 @@
 import { readFileLinesAsNumbers } from "../helpers/ReadFile";
 
-
-const inputPath = '../data/day-1-input.txt';  
+// const inputPath = '../data/day-1-test.txt' // To test methods
+const inputPath = '../data/day-1-input.txt'; // To get solutions  
 
 const totalTopThreeSumCalories = (totalCalories: number[]): number[] => {
   let sumCaloriesArray: number[] = [];

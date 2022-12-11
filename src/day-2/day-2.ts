@@ -1,6 +1,7 @@
 import { readFileLines } from "../helpers/ReadFile";
 
-const inputPath = '../data/day-2-input.txt';
+// const inputPath = '../data/day-2-test.txt' // To test methods
+const inputPath = '../data/day-2-input.txt'; // To get solutions
 
 enum MoveItems {
   'A' = 1,
