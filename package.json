@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc && copyfiles --flat src/data/*.* dist/data",
     "start": "node dist/app.js",
-    "dev": "tsc && node dist/app.js",
+    "dev": "npm run build && node dist/app.js",
     "lint": "eslint . --ext .ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
