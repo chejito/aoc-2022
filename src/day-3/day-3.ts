@@ -1,13 +1,7 @@
-import { readFileSync } from 'fs';
-import * as path from 'path';
+import { readFileLines } from "../helpers/ReadFile";
 
-const inputPath: string = path.resolve(__dirname, './input.txt');
+const inputPath = '../data/day-3-input.txt'
 const values = ' abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-
-const readFileLines = (filename: string): string[] => {
-  return readFileSync(filename, 'utf-8')
-    .split(/\r?\n/);
-}
 
 const getRepeatedItems = (rucksack: string): string[] => {
   const repeatedItems: string[] = [];
@@ -19,8 +13,7 @@ const getRepeatedItems = (rucksack: string): string[] => {
     if (partitions[1].includes(value) && !repeatedItems.includes(value)){
       repeatedItems.push(value);      
     }
-  }  
-  
+  }
   return repeatedItems;
 }
 
@@ -56,25 +49,28 @@ const findBadge = (group: string[]): string => {
   return badge;
 }
 
-// Common actions
-const rucksacks = readFileLines(inputPath);
+export const dayThree = () => {
+  // Common actions
+  const rucksacks = readFileLines(inputPath);
+  
+  // Part 1 actions
+  const repeatedItems = rucksacks.map(r => getRepeatedItems(r));
+  const priorities = repeatedItems.map(ri => getTotalPriority(getItemsPriorities(ri)));
+  
+  // Part 1 solution
+  const totalPriorities = getTotalPriority(priorities);
+  console.log('\nDay 3 - Part 1 Solution');
+  console.log('-----------------------');
+  console.log(`Total Priorities: ${totalPriorities}`);
+  
+  // Part 2 actions
+  const badges = groupByThree(rucksacks).map(g => findBadge(g));
+  const badgePriorities = getItemsPriorities(badges);
+  
+  // Part 2 solution
+  const totalBadgePriorities = getTotalPriority(badgePriorities);
+  console.log('\nDay 3 - Part 1 Solution');
+  console.log('-----------------------');
+  console.log(`Total Badge Priorities: ${totalBadgePriorities}`);
+}
 
-// Part 1 actions
-const repeatedItems = rucksacks.map(r => getRepeatedItems(r));
-const priorities = repeatedItems.map(ri => getTotalPriority(getItemsPriorities(ri)));
-
-// Part 1 solution
-const totalPriorities = getTotalPriority(priorities);
-console.log('\nPart 1 solution')
-console.log('---------------')
-console.log(`Total Priorities: ${totalPriorities}`);
-
-// Part 2 actions
-const badges = groupByThree(rucksacks).map(g => findBadge(g));
-const badgePriorities = getItemsPriorities(badges);
-
-// Part 2 solution
-const totalBadgePriorities = getTotalPriority(badgePriorities);
-console.log('\nPart 2 solution')
-console.log('---------------')
-console.log(`Total Badge Priorities: ${totalBadgePriorities}`);

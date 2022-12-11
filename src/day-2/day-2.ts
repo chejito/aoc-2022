@@ -1,7 +1,6 @@
-import { readFileSync } from 'fs';
-import * as path from 'path';
+import { readFileLines } from "../helpers/ReadFile";
 
-const inputPath: string = path.resolve(__dirname, './input.txt');
+const inputPath = '../data/day-2-input.txt';
 
 enum MoveItems {
   'A' = 1,
@@ -18,10 +17,6 @@ enum Results {
   Loss = 0,
 }
 
-const readFile = (filename: string): string[] => {
-  return readFileSync(filename, 'utf-8')
-    .split(/\r?\n/);
-}
 
 const assignMyMove = (move: string[]): string[] => {
   if (move[1] == 'X') return assignWinMove(move);
@@ -59,18 +54,24 @@ const checkWin = (elfMove: number, myMove: number): boolean => {
   }
 }
 
-const content = readFile(inputPath);
+export const dayTwo = () => {
+  const content = readFileLines(inputPath);
 
-const totalPointsPartOne = content
-  .map(move => getMovePoints(replaceWithValues(move.split(' '))))
-  .reduce((sum: number, num: number) => sum + num, 0);
-
-const totalPointsPartTwo = content
-  .map(move => getMovePoints(replaceWithValues(assignMyMove(move.split(' ')))))
-  .reduce((sum: number, num: number) => sum + num, 0);
+  const totalPointsPartOne = content
+    .map(move => getMovePoints(replaceWithValues(move.split(' '))))
+    .reduce((sum: number, num: number) => sum + num, 0);
   
-console.log('Part 1:')
-console.log(`Total points: $${totalPointsPartOne}`);
-console.log('Part 2:')
-console.log(`Total points: $${totalPointsPartTwo}`);
+  const totalPointsPartTwo = content
+    .map(move => getMovePoints(replaceWithValues(assignMyMove(move.split(' ')))))
+    .reduce((sum: number, num: number) => sum + num, 0);
+    
+  
+  console.log('\nDay 2 - Part 1 Solution');
+  console.log('-----------------------');
+  console.log(`Total points: $${totalPointsPartOne}`);
+  console.log('\nDay 2 - Part 2 Solution');
+  console.log('-----------------------');
+  console.log(`Total points: $${totalPointsPartTwo}`);  
+}
+
 
