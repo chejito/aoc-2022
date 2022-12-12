@@ -53,6 +53,7 @@ const isOverlapped = (first: number[], second: number[]): boolean => {
 
 export const dayFour = () => {
 
+  console.clear();
   // Common actions
   const pairs = readFileLines(inputPath);
   const splittedPairs = getSplittedPairs(pairs);
