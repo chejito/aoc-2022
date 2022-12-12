@@ -123,8 +123,6 @@ export const dayFive = () => {
   
   // Part 2 actions
   const initialStacks2 = createStacks(stacks);
-
-  console.log('Before procedure');
   processProcedureAllCratesAtATime(cleanedProcedure, initialStacks2);
   const result2 = getTopCrates(initialStacks2);
   
