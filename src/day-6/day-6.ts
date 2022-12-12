@@ -15,8 +15,9 @@ const getStartOfMarker = (input: string, markerLength: number): number => {
   for (let i = 0; i < input.length - offset; i++) {
     const last = i + offset + 1;
     const chunk = input.slice(i, last);
-    // const repeated = chunk.split('').filter(char => isRepeated(char, chunk));
-    if (chunk.split('').filter(char => isRepeated(char, chunk)).length == 0) return last;
+
+    if (chunk.split('')
+      .filter(char => isRepeated(char, chunk)).length == 0) return last;
   }
   return -1;
 } 
