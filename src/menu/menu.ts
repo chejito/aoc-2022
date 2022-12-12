@@ -1,9 +1,10 @@
+import * as rl from 'readline';
 import { dayOne } from "../day-1/day-1";
 import { dayTwo } from "../day-2/day-2";
 import { dayThree } from "../day-3/day-3";
 import { dayFour } from "../day-4/day-4";
-import * as rl from 'readline';
 import { dayFive } from "../day-5/day-5";
+import { daySix } from "../day-6/day-6";
 
 const readline = rl.createInterface({
   input: process.stdin,
@@ -18,7 +19,7 @@ const backToMenu = () => {
 
 export const menu = () => {
   console.clear();
-  console.log('.: Advent of Code 2022 Solutions :.\n')
+  console.log('\t\t\t.: Advent of Code 2022 Solutions :.\n')
   console.log('1 - Day 1\t6 - Day 6\t11 - Day 11\t16 - Day 16\t21 - Day 21');
   console.log('2 - Day 2\t7 - Day 7\t12 - Day 12\t17 - Day 17\t22 - Day 22');
   console.log('3 - Day 3\t8 - Day 8\t13 - Day 13\t18 - Day 18\t23 - Day 23');
@@ -56,6 +57,12 @@ export const menu = () => {
       case '5':
         console.clear();
         dayFive();
+        backToMenu();
+        break;
+
+      case '6':
+        console.clear();
+        daySix();
         backToMenu();
         break;
 
